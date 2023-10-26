@@ -16,3 +16,5 @@ follow the statements in `1.py`, and type it in your python program, you can use
 # useful links
 
 1. https://www.w3schools.com/python/default.asp
+
+https://github.com/russelyang/
