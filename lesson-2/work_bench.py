@@ -6,4 +6,6 @@ exist = "d" in t
 # CRUD
 
 # LIST / ARRAY
-a = ["a", "b", "c"]
+list = ["a", "b", "c"]
+"a" in list
+# len(), index()
