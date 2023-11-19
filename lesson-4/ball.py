@@ -9,6 +9,8 @@ screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pygame.time.Clock()
 
 ball = pygame.image.load("lesson-4/ball.png")
+ball_rect = ball.get_rect()
+print(ball_rect)
 ball = pygame.transform.scale(ball, [32, 32])
 ball_rect = ball.get_rect()
 ball_rect.topleft = (0, 0)

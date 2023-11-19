@@ -27,6 +27,7 @@ while running:
         speed[0] = -speed[0]
     if ball_rect.top < 0 or ball_rect.bottom > WINDOW_HEIGHT:
         speed[1] = -speed[1]
+
     pygame.display.update()
     clock.tick(60)
 pygame.quit()

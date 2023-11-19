@@ -15,3 +15,8 @@ https://www.iconarchive.com/
 https://www.leshylabs.com/apps/sfMaker/
 
 Week 3 summary updated, plase check `README.md` in lesson-3 folder.
+
+### wait youtube video at your pace
+
+https://www.youtube.com/watch?v=jO6qQDNa2UY&t=1005s
+it will be great if you want and follow video do the project.
