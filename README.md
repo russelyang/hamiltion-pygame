@@ -14,7 +14,7 @@ https://www.iconarchive.com/
 
 https://www.leshylabs.com/apps/sfMaker/
 
-Week 3 summary updated, plase check `README.md` in lesson-3 folder.
+Week 5 summary updated, plase check `README.md` in lesson-5 folder.
 
 ### wait youtube video at your pace
 
