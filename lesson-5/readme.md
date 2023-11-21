@@ -11,4 +11,5 @@
 2. to make the game window 2 times bigger, add the ball if it is required
 
 use all the files in lession-5 folder. the final result will look like
+
 ![image info](./screenshot-1.png)
