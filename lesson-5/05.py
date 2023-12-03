@@ -14,6 +14,13 @@ ball = pygame.image.load("lesson-5/ball.png").convert_alpha()
 ball = pygame.transform.scale(ball, [48, 48])
 ball_rect = ball.get_rect()
 ball_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+
+# paddle
+paddle = pygame.Surface((100, 15))
+paddle.fill((0, 255, 0))
+paddle_rect = paddle.get_rect()
+paddle_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT - 50)
+
 speed = [2, 2]
 clock = pygame.time.Clock()
 
@@ -29,6 +36,17 @@ while running:
         speed[0] = -speed[0]
     if ball_rect.top < 0 or ball_rect.bottom > WINDOW_HEIGHT:
         speed[1] = -speed[1]
+
+    # handle the movement
+    mouse_x = pygame.mouse.get_pos()[0]
+    if mouse_x - 40 > 0:
+        paddle_rect.center = (mouse_x, WINDOW_HEIGHT - 50)
+
+    # handle keyboard move padding
+    user_input = pygame.key.get_pressed()
+    if user_input[pygame.K_a]:
+        paddle_rect.move_ip([-5, 0])
+    screen.blit(paddle, paddle_rect)
 
     pygame.display.update()
     clock.tick(60)
