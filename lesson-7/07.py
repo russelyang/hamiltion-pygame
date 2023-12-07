@@ -27,11 +27,14 @@ paddle_rect.center = (WINDOW_WIDTH // 2, PADDLE_HIGHT)
 pygame.mouse.set_visible(False)
 
 score = 0
-print(pygame.font.get_fonts())
+# print(pygame.font.get_fonts())
 font = pygame.font.SysFont("kefa", 24)
+gameover_font = pygame.font.SysFont("kefa", 48)
 
 clock = pygame.time.Clock()
 last_colide = 0
+
+gameover = False
 
 running = True
 while running:
@@ -40,38 +43,47 @@ while running:
             running = False
     # background
     screen.blit(bg, (0, 0))
-    # ball
-    ball_rect = ball_rect.move(speed)
-    screen.blit(ball, ball_rect)
-    if ball_rect.left < 0 or ball_rect.right > WINDOW_WIDTH:
-        speed[0] = -speed[0]
-    if ball_rect.top < 0 or ball_rect.bottom > WINDOW_HEIGHT:
-        speed[1] = -speed[1]
+    if not gameover:
+        # ball
+        ball_rect = ball_rect.move(speed)
+        screen.blit(ball, ball_rect)
+        if ball_rect.left < 0 or ball_rect.right > WINDOW_WIDTH:
+            speed[0] = -speed[0]
+        if ball_rect.top < 0 or ball_rect.bottom > WINDOW_HEIGHT:
+            speed[1] = -speed[1]
 
-    # score
-    score_str = font.render("score: " + str(score), True, (255, 0, 0))
-    score_str_rect = score_str.get_rect()
-    screen.blit(score_str, score_str_rect)
+        # score
+        score_str = font.render("score: " + str(score), True, (255, 0, 0))
+        score_str_rect = score_str.get_rect()
+        screen.blit(score_str, score_str_rect)
 
-    # padding
-    mouse_pos = pygame.mouse.get_pos()
-    paddle_rect.center = (mouse_pos[0], PADDLE_HIGHT)
-    if paddle_rect.left < 0:
-        paddle_rect.left = 0
-    if paddle_rect.right > WINDOW_WIDTH:
-        paddle_rect.right = WINDOW_WIDTH
+        # padding
+        mouse_pos = pygame.mouse.get_pos()
+        paddle_rect.center = (mouse_pos[0], PADDLE_HIGHT)
+        if paddle_rect.left < 0:
+            paddle_rect.left = 0
+        if paddle_rect.right > WINDOW_WIDTH:
+            paddle_rect.right = WINDOW_WIDTH
 
-    # detect colide
-    if (
-        paddle_rect.colliderect(ball_rect)
-        and pygame.time.get_ticks() - last_colide > 150
-    ):
-        speed[0] = random.choice([1, -1]) * speed[0]
-        speed[1] = -speed[1]
-        score += 1
-        last_colide = pygame.time.get_ticks()
-    screen.blit(paddle, paddle_rect)
+        # detect colide
+        if (
+            paddle_rect.colliderect(ball_rect)
+            and pygame.time.get_ticks() - last_colide > 150
+        ):
+            speed[0] = random.choice([1, -1]) * speed[0]
+            speed[1] = -speed[1]
+            score += 1
+            last_colide = pygame.time.get_ticks()
+        screen.blit(paddle, paddle_rect)
 
+        if ball_rect.bottom > paddle_rect.bottom:
+            gameover = True
+    else:
+        gameover = gameover_font.render("Game Over", True, (0, 0, 0))
+        gameover_rect = gameover.get_rect()
+        gameover_rect.center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
+        screen.blit(gameover, gameover_rect)
+        pygame.mouse.set_visible(True)
     pygame.display.update()
     clock.tick(60)
 pygame.quit()
