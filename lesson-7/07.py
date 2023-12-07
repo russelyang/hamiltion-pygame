@@ -28,8 +28,7 @@ pygame.mouse.set_visible(False)
 
 score = 0
 print(pygame.font.get_fonts())
-font = pygame.font.SysFont("kefa", 64)
-
+font = pygame.font.SysFont("kefa", 24)
 
 clock = pygame.time.Clock()
 last_colide = 0
@@ -52,7 +51,6 @@ while running:
     # score
     score_str = font.render("score: " + str(score), True, (255, 0, 0))
     score_str_rect = score_str.get_rect()
-    score_str_rect.topright = (WINDOW_WIDTH, 0)
     screen.blit(score_str, score_str_rect)
 
     # padding
