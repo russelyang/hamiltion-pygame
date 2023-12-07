@@ -1,6 +1,6 @@
 # Summary
 
-we made the padding move and catch the ball and we are able to keep track of scoring.
+we made the padding move and catch the ball and we are able to keep track of scoring. we are going to add game over and restart in next class.
 
 ## what is an object
 
