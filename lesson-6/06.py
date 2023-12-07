@@ -6,6 +6,7 @@ pygame.init()
 # define game windows width hight
 WINDOW_WIDTH = 480
 WINDOW_HEIGHT = 360
+GREEN = (0, 255, 0)
 
 screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 
@@ -19,14 +20,15 @@ speed = [5, 5]
 
 # paddle
 paddle = pygame.Surface((100, 15))
-paddle.fill((0, 255, 0))
+paddle.fill(GREEN)
 paddle_rect = paddle.get_rect()
 PADDLE_HIGHT = WINDOW_HEIGHT - 50
 paddle_rect.center = (WINDOW_WIDTH // 2, PADDLE_HIGHT)
 pygame.mouse.set_visible(False)
 
 score = 0
-font = pygame.font.SysFont("arial", 16)
+print(pygame.font.get_fonts())
+font = pygame.font.SysFont("kefa", 64)
 
 
 clock = pygame.time.Clock()
@@ -37,7 +39,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    # background
     screen.blit(bg, (0, 0))
+    # ball
     ball_rect = ball_rect.move(speed)
     screen.blit(ball, ball_rect)
     if ball_rect.left < 0 or ball_rect.right > WINDOW_WIDTH:
@@ -45,10 +49,13 @@ while running:
     if ball_rect.top < 0 or ball_rect.bottom > WINDOW_HEIGHT:
         speed[1] = -speed[1]
 
+    # score
     score_str = font.render("score: " + str(score), True, (255, 0, 0))
     score_str_rect = score_str.get_rect()
+    score_str_rect.topright = (WINDOW_WIDTH, 0)
     screen.blit(score_str, score_str_rect)
 
+    # padding
     mouse_pos = pygame.mouse.get_pos()
     paddle_rect.center = (mouse_pos[0], PADDLE_HIGHT)
     if paddle_rect.left < 0:
